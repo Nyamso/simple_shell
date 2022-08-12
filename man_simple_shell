@@ -1,71 +1,78 @@
-.TH man "2 August 2022" "simple_shell man page"
-
-
+.TH SHELL 1 "27 November 2019" GNU "Shell man page"
 .SH NAME
-
-.B shell
-
-- a standard command interpreter similar to the GNU Bourne-Again SHell (sh).
-
+.B hsh
+- Command line interpreter (shell)
 .SH SYNOPSIS
-#include "shell.h"
-
-.PP
-.shell
-.PP
-shell [option_name] [argument ...]
-
+The shell is executed by typing ./hsh
+.br
+Then, it will wait for an input such as : command [arguments] [other]
 .SH DESCRIPTION
-shell is a command language interpreter that that executes commands read from the standard input or from a file.
-
-.SH INVOCATION
-If no arguments are present and if the standard input of the shell is connected to a terminal, the shell is considered an interactive shell.
-
-.PP
-If the standard input is used with a pipeline operator, |, to connect the command, such as echo "qwerty" | ./shell, then the shell is in non-interactive mode.
-
-.SH LEXICAL STRUCTURE
-The shell reads input in terms of lines from a file and breaks it up into words at whitespace (blanks and tabs).
-
-.SH RETURN
-Upon successful return, the shell will always return a 0 for success. If the shell program fails when a command is entered incorrectly or does not exist in the $PATH, then shell program will exit out of the child process and display an error message corresponding to the error the user committed and return with a prompt.
-
-.SH BUILT-INS
-
-.PP
-env - When entered, shell prints the current environment to standard output.
-
-.PP
-exit - When entered, shell exits out of the shell program.
-
-.SH FILES
-
-.I
-
-.sp
-
-$HOME/.profile
-
-.I
-
-.sp
-/etc/profile
-
-.I
-
-.sp
-/etc/shells
-
-.SH ALSO SEE
-
-.PP
-man sh, execve(2), environ
-
-.SH NOTES
-All files and code used in .shell were created and compiled on Ubuntu 14.04.4 LTS using GCC 4.8.4
-
+This shell is a project dedicated to our studies. My partner and I, have tried to mimic the behavior of a real shell. In case you don't know what a shell is (I doubt that) here is a brief explanation. A shell is a command language interpreter that executes commands read from the standard input or from a file. Our shell does not support the arguments passed to it, yet. We are still working on it.
+.br
+.B What hsh can do :
+.br
+- Executes any command with its arguments
+.br
+- Executes built-in commands
+.br
+- Handle pipes
+.br
+- Handle the command seperator ;
+.br
+- Handle && and || logical operators
+.br
+- handle variable replacement
+.br
+- handle the $? variable
+.br
+- handle the $$ variable
+.SH BUILT-IN FUNCTIONS
+Those are the available built-in functions :
+.br
+ - exit : exit the shell
+.br
+ - cd : Change Directory
+.br
+ - help : Display the help page
+.br
+ - history : Display history of commands used
+.br
+ - alias : Put an alias for a command
+.br
+ - env : Display the environment variables
+.SH OPTIONS
+There are no options for the moment.
+.SH EXIT STATUS
+The exit value depends on how a function has terminated. Every error is identified by a certain value. On success it will always return 0.
+.SH RETURN VALUE
+Return 0 on success, otherwise it will return the exit value.
+.SH ENVIRONMENT
+- PATH
+.br
+- $?
+.br
+- $$
 .SH BUGS
-There are many features and builtin commands that are not implimented in this simple shell such as aliases, cd, and logical operators. When 
-
-.SH AUTHOR
-
+There is no known bugs at the moment.
+.SH EXAMPLE
+.B Two ways to execute our shell :
+.br
+.B The intercative mode :
+.br
+ $ ./hsh
+.br
+ #cisfun$ /bin/ls
+.br
+ hsh main.c shell.c
+.br
+ #cisfun$ exit
+.br
+ $
+.br
+.B The non-interactive mode :
+.br
+ $ echo "/bin/ls" | ./hsh
+.br
+ hsh main.c shell.c
+.SH AUTHORS
+Rehema Msosa, Philip Victor
